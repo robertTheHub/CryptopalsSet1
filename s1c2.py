@@ -1,4 +1,4 @@
-from s1c1 import *
+import s1c1
 
 def xorByteArrays(abytearray, bbytearray):
     output = bytearray()
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     bstring = "686974207468652062756c6c277320657965"
     answer = "746865206b696420646f6e277420706c6179"
 
-    abyte = hexStringToByteArray(astring) 
-    bbyte = hexStringToByteArray(bstring)
+    abyte = s1c1.hexStringToByteArray(astring) 
+    bbyte = s1c1.hexStringToByteArray(bstring)
     xored = xorByteArrays(abyte,bbyte)
     print(xored.hex() == answer)
