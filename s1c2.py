@@ -1,17 +1,13 @@
-import s1c1
+import convert
+import xor
 
-def xorByteArrays(abytearray, bbytearray):
-    output = bytearray()
-    for a,b in zip(abytearray, bbytearray):
-        output.append(a^b)
-    return output
 
 if __name__ == "__main__":
-    astring = "1c0111001f010100061a024b53535009181c"
-    bstring = "686974207468652062756c6c277320657965"
-    answer = "746865206b696420646f6e277420706c6179"
 
-    abyte = s1c1.hexStringToByteArray(astring) 
-    bbyte = s1c1.hexStringToByteArray(bstring)
-    xored = xorByteArrays(abyte,bbyte)
-    print(xored.hex() == answer)
+    aString = "1c0111001f010100061a024b53535009181c"
+    anotherString = "686974207468652062756c6c277320657965"
+    solution = "746865206b696420646f6e277420706c6179"
+
+    answer = xor.hexStrings(aString, anotherString).hex()
+
+    print(answer == solution)

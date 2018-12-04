@@ -5,12 +5,13 @@ scoring = {
         'm': .02406, 'n': .06749, 'o': .07507, 'p': .01929,
         'q': .00095, 'r': .05987, 's': .06327, 't': .09056,
         'u': .02758, 'v': .00978, 'w': .02360, 'x': .00150,
-        'y': .01974, 'z': .00074, ' ': .13000
+        'y': .01974, 'z': .00074,
     }
+
 def scoreString(user_string):
-     user_string.lower()
-     total = 0
-     for char in user_string:
-         if char in scoring:
-             total += scoring[char]
-     return total
+    user_string.lower()
+    total = 0
+    for char in user_string:
+        if char in scoring:
+            total += scoring[char]
+    return total
