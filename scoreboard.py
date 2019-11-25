@@ -1,48 +1,48 @@
 class Scoreboard:
-    def __init__(self, results=1, variables=tuple(), lowestScore=0):
-        self.theRanking = [lowestScore] * results
-        self.meta = [[aKey] * results for aKey in variables]
+    def __init__(self, num_results=1, variables=tuple(), lowest_score=0):
+        self.ranking = [lowest_score] * num_results
+        self.meta = [[key] * num_results for key in variables]
 
-    def scoreToBeat(self):
-        return self.theRanking[-1]
+    def score_to_beat(self):
+        return self.ranking[-1]
 
-    def getSize(self):
-        return len(self.theRanking)
+    def get_size(self):
+        return len(self.ranking)
 
-    def insertIntoRanking(self, aScore):
-        theIndex = self.getSize()
-        for aIndex, aRanking in enumerate(self.theRanking):
-            if aScore > aRanking:
-                if aIndex < theIndex:
-                    theIndex = aIndex
-                aScore, self.theRanking[aIndex] = self.theRanking[aIndex], aScore
-        return theIndex
+    def insert_into_ranking(self, score):
+        index = self.get_size()
+        for aIndex, aRanking in enumerate(self.ranking):
+            if score > aRanking:
+                if aIndex < index:
+                    index = aIndex
+                score, self.ranking[aIndex] = self.ranking[aIndex], score
+        return index
 
-    def updateMeta(self, aMetaIndex, theIndex, aList):
-        if len(aList):
-            for anotherIndex, aRanking in enumerate(self.meta[aMetaIndex]):
-                if anotherIndex >= theIndex:
-                    self.meta[aMetaIndex][anotherIndex] = aList[aMetaIndex]
-                    aList[aMetaIndex] = aRanking
+    def update_meta(self, meta_index, index, iterable):
+        if len(iterable):
+            for anotherIndex, aRanking in enumerate(self.meta[meta_index]):
+                if anotherIndex >= index:
+                    self.meta[meta_index][anotherIndex] = iterable[meta_index]
+                    iterable[meta_index] = aRanking
 
-    def update(self, aScore, aTuple=tuple()):
-        if aScore > self.scoreToBeat():
-            theIndex = self.insertIntoRanking(aScore)
-            for aMetaIndex in range(len(self.meta)):
-                self.updateMeta(aMetaIndex, theIndex, list(aTuple))
+    def update(self, score, tup=tuple()):
+        if score > self.score_to_beat():
+            index = self.insert_into_ranking(score)
+            for meta_index in range(len(self.meta)):
+                self.update_meta(meta_index, index, list(tup))
 
-    def topScore(self):
-        return self.theRanking[0]
+    def top_score(self):
+        return self.ranking[0]
 
-    def topMeta(self):
-        return [aList[0] for aList in self.meta]
+    def top_meta(self):
+        return [iterable[0] for iterable in self.meta]
 
     def __str__(self):
         output = "\n"
-        for aIndex, aRanking in enumerate(self.theRanking):
-            output += "| Score: " + str(aRanking) + "\n"
-            for anotherIndex, aTopic in enumerate(self.meta):
-                output += "| Data Point (" + str(anotherIndex) + "): "
-                output += str(self.meta[anotherIndex][aIndex]) + "\n"
+        for index, ranking in enumerate(self.ranking):
+            output += "| Score: " + str(ranking) + "\n"
+            for another_index, topic in enumerate(self.meta):
+                output += "| Data Point (" + str(another_index) + "): "
+                output += str(self.meta[another_index][index]) + "\n"
             output += "------------\n"
         return output
