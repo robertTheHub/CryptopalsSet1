@@ -9,27 +9,37 @@ class Scoreboard:
     def get_size(self):
         return len(self.ranking)
 
+    def get_rankings(self):
+        return self.ranking
+
+    def get_meta(self):
+        return self.meta
+
     def insert_into_ranking(self, score):
         index = self.get_size()
-        for aIndex, aRanking in enumerate(self.ranking):
-            if score > aRanking:
-                if aIndex < index:
-                    index = aIndex
-                score, self.ranking[aIndex] = self.ranking[aIndex], score
+        for another_index, ranking in enumerate(self.ranking):
+            if score > ranking:
+                if another_index < index:
+                    index = another_index
+                score, self.ranking[another_index] = self.ranking[another_index], score
         return index
 
-    def update_meta(self, meta_index, index, iterable):
-        if len(iterable):
-            for anotherIndex, aRanking in enumerate(self.meta[meta_index]):
-                if anotherIndex >= index:
-                    self.meta[meta_index][anotherIndex] = iterable[meta_index]
-                    iterable[meta_index] = aRanking
+    def update_meta(self, meta_index, index, value):
+        if len(value):
+            self.meta[meta_index][index+1:] = self.meta[meta_index][index:]
+            self.meta[meta_index][index] = value
 
-    def update(self, score, tup=tuple()):
-        if score > self.score_to_beat():
-            index = self.insert_into_ranking(score)
-            for meta_index in range(len(self.meta)):
-                self.update_meta(meta_index, index, list(tup))
+    def update(self, scores, tup=tuple()):
+        if tup:
+            tup = list(zip(*tup))
+        for i in range(len(scores)):
+            score = scores[i]
+            if tup:
+                meta = tup[i]
+            if score > self.score_to_beat():
+                index = self.insert_into_ranking(score)
+                for meta_index in range(len(self.meta)):
+                    self.update_meta(meta_index, index, meta[meta_index])
 
     def top_score(self):
         return self.ranking[0]

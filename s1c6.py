@@ -1,5 +1,4 @@
 import convert
-import base64
 
 
 def rawHammingDistance(byte1, byte2):
