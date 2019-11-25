@@ -27,7 +27,7 @@ class TestConvertMethods(unittest.TestCase):
 
     def test_string_to_byte_array(self):
         pass
-    
+
 
 if __name__ == '__main__':
     unittest.main()
