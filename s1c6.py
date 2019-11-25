@@ -1,9 +1,6 @@
-import s1c3
-import s1c5
+import convert
 import base64
 
-def base64ToByteArray(block):
-    return base64.b64decode(block)
 
 def rawHammingDistance(byte1, byte2):
     total = 0
@@ -52,7 +49,7 @@ if __name__ == "__main__":
     
     block = ""
     with open("6.txt", "r") as theBlock:
-        block = base64ToByteArray(theBlock.read())
+        block = convert.base64_to_byte_array(theBlock.read())
     total = 4
     
     topDist = [-1000] * total

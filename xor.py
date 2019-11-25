@@ -1,20 +1,23 @@
 import convert
 
-def theseBytes(aBytes, anotherBytes):
+
+def two_bytes(bytes_a, bytes_b):
     output = bytearray()
-    for a,b in zip(aBytes, anotherBytes):
-        output.append(a^b)
+    for a, b in zip(bytes_a, bytes_b):
+        output.append(a ^ b)
     return output
 
-def hexStrings(aString, anotherString):
-    aBytes = convert.hexStringToBytes(aString) 
-    anotherBytes = convert.hexStringToBytes(anotherString)
-    output = theseBytes(aBytes,anotherBytes)
+
+def two_hex_strings(string_a, string_b):
+    bytes_a = convert.hex_string_to_bytes(string_a)
+    bytes_b = convert.hex_string_to_bytes(string_b)
+    output = two_bytes(bytes_a, bytes_b)
     return output
 
-def bytesWithString(aByteArray, aString):
-    anotherByteArray = convert.stringToByteArray(aString)
-    aRemainder = len(aByteArray) % len(aString)
-    aDivisor = len(aByteArray) // len(aString)
-    anotherByteArray = anotherByteArray[:] * aDivisor + anotherByteArray[:aRemainder]
-    return theseBytes(aByteArray, anotherByteArray)
+
+def byte_array_with_string(byte_array, string):
+    temp_byte_array = convert.string_to_byte_array(string)
+    remainder = len(byte_array) % len(string)
+    divisor = len(byte_array) // len(string)
+    other_byte_array = temp_byte_array[:] * divisor + temp_byte_array[:remainder]
+    return two_bytes(byte_array, other_byte_array)

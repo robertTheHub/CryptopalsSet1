@@ -1,29 +1,38 @@
 import base64
 
-def hexStringToBytes(hexString):
-    return bytes.fromhex(hexString)
 
-def bytesToBase64String(aBytes):
-    return base64.b64encode(aBytes)
+def hex_string_to_bytes(hex_string):
+    return bytes.fromhex(hex_string)
 
-def hexStringToBase64(aString):
-    aBytes = hexStringToBytes(aString)
-    return bytesToBase64String(aBytes)    
 
-def stringToByteArray(aString):
+def bytes_to_base64(a_bytes):
+    return base64.b64encode(a_bytes)
+
+
+def hex_string_to_base64(a_string):
+    a_bytes = hex_string_to_bytes(a_string)
+    return bytes_to_base64(a_bytes)
+
+
+def string_to_byte_array(a_string):
     output = bytearray()
-    for aLetter in aString:
-        output.append(ord(aLetter))
+    for letter in a_string:
+        output.append(ord(letter))
     return output
 
-def bytesToString(aBytes):
+
+def bytes_to_string(a_bytes):
     try:
-        return aBytes.decode("utf-8")
+        return a_bytes.decode("utf-8")
     except Exception:
         try:
             output = ""
-            for aByte in aBytes:
+            for aByte in a_bytes:
                 output += chr(aByte)
             return output
         except Exception:
-            return ""        
+            return ""
+
+
+def base64_to_byte_array(block):
+    return base64.b64decode(block)

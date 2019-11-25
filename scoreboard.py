@@ -1,7 +1,7 @@
 class Scoreboard:
     def __init__(self, results=1, variables=tuple(), lowestScore=0):
-        self.theRanking = [lowestScore]*results
-        self.meta = [[aKey]*results for aKey in variables]
+        self.theRanking = [lowestScore] * results
+        self.meta = [[aKey] * results for aKey in variables]
 
     def scoreToBeat(self):
         return self.theRanking[-1]
@@ -15,28 +15,28 @@ class Scoreboard:
             if aScore > aRanking:
                 if aIndex < theIndex:
                     theIndex = aIndex
-                aScore, self.theRanking[aIndex] =self.theRanking[aIndex], aScore
+                aScore, self.theRanking[aIndex] = self.theRanking[aIndex], aScore
         return theIndex
 
     def updateMeta(self, aMetaIndex, theIndex, aList):
         if len(aList):
             for anotherIndex, aRanking in enumerate(self.meta[aMetaIndex]):
                 if anotherIndex >= theIndex:
-                     self.meta[aMetaIndex][anotherIndex]= aList[aMetaIndex]
-                     aList[aMetaIndex] = aRanking
+                    self.meta[aMetaIndex][anotherIndex] = aList[aMetaIndex]
+                    aList[aMetaIndex] = aRanking
 
     def update(self, aScore, aTuple=tuple()):
         if aScore > self.scoreToBeat():
             theIndex = self.insertIntoRanking(aScore)
             for aMetaIndex in range(len(self.meta)):
                 self.updateMeta(aMetaIndex, theIndex, list(aTuple))
-    
+
     def topScore(self):
         return self.theRanking[0]
 
     def topMeta(self):
-        return [aList[0] for aList in self.meta]    
-          
+        return [aList[0] for aList in self.meta]
+
     def __str__(self):
         output = "\n"
         for aIndex, aRanking in enumerate(self.theRanking):
