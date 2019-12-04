@@ -25,13 +25,13 @@ class Scoreboard:
         return index
 
     def update_meta(self, meta_index, index, value):
-        if len(value):
-            self.meta[meta_index][index+1:] = self.meta[meta_index][index:]
-            self.meta[meta_index][index] = value
+        self.meta[meta_index][index+1:] = self.meta[meta_index][index:]
+        self.meta[meta_index][index] = value
 
     def update(self, scores, tup=tuple()):
         if tup:
-            tup = list(zip(*tup))
+            if len(tup) > 1:
+                tup = list(zip(*tup))
         for i in range(len(scores)):
             score = scores[i]
             if tup:
