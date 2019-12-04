@@ -2,4 +2,7 @@ import unittest
 
 
 class TestScoreboardMethods(unittest.TestCase):
-    pass
+
+    @unittest.skip("Unwritten Class Tests")
+    def test_class(self):
+        pass

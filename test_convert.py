@@ -4,6 +4,7 @@ import convert
 
 class TestConvertMethods(unittest.TestCase):
 
+    @unittest.skip("Unwritten Test")
     def test_base64_to_bytes(self):
         pass
 
@@ -12,6 +13,7 @@ class TestConvertMethods(unittest.TestCase):
         output = b"SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
         self.assertEqual(convert.bytes_to_base64(input_byte_array), output)
 
+    @unittest.skip("Unwritten Test")
     def test_bytes_to_string(self):
         pass
 
@@ -25,6 +27,7 @@ class TestConvertMethods(unittest.TestCase):
         output = b"I'm killing your brain like a poisonous mushroom"
         self.assertEqual(convert.hex_string_to_bytes(input_hex_string), output)
 
+    @unittest.skip("Unwritten Test")
     def test_string_to_byte_array(self):
         pass
 

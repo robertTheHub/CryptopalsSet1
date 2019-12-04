@@ -28,7 +28,7 @@ class TestSetOneMethods(unittest.TestCase):
 
     def test_challenge_four(self):
         text_file = open("4.txt", "r")
-        board = cipher.single_byte_xor_in_iterable(text_file, 10)
+        board = cipher.single_byte_xor_in_file(text_file, 10)
         solution_text = "Now that the party is jumping\n"
         solution_key = "5"
         self.assertEqual(board.top_meta()[0], solution_key)
@@ -41,5 +41,6 @@ class TestSetOneMethods(unittest.TestCase):
         input_byte_array = convert.string_to_byte_array(string_a)
         self.assertEqual(xor.byte_array_with_string(input_byte_array, key).hex(), answer)
 
+    @unittest.skip("Unwritten Test")
     def test_challenge_six(self):
         pass

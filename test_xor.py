@@ -16,6 +16,7 @@ class TestXORMethods(unittest.TestCase):
         solution = b"the kid don\'t play"
         self.assertEqual(xor.two_hex_strings(string_a, string_b), solution)
 
+    @unittest.skip("Unwritten Test")
     def test_byte_array_with_string(self):
         pass
 
